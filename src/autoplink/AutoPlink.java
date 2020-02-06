@@ -174,7 +174,7 @@ public class AutoPlink extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboBoxCommandGroup = new javax.swing.JComboBox<>();
         jRadioButtonCommandTypeSingle = new javax.swing.JRadioButton();
-        jRadioButtonGroupCommand = new javax.swing.JRadioButton();
+        jRadioButtonCommandTypeGroup = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jButtonEditDeviceGroup = new javax.swing.JButton();
         jButtonEditCommandGroup = new javax.swing.JButton();
@@ -183,6 +183,7 @@ public class AutoPlink extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldCommandToRun1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jButtonEditDeviceGroup1 = new javax.swing.JButton();
         jScrollPaneLog = new javax.swing.JScrollPane();
         jTextPaneLog = new javax.swing.JTextPane();
         jTextFieldCommandFilter = new javax.swing.JTextField();
@@ -196,6 +197,7 @@ public class AutoPlink extends javax.swing.JFrame {
             }
         });
 
+        jList1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -208,21 +210,33 @@ public class AutoPlink extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
+        jTextFieldCommandToRun.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Command:");
 
+        jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Username:");
 
+        jLabel3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Password:");
 
+        jTextFieldUsername.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Device Group:");
 
+        jComboBoxDeviceGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxDeviceGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "switches.txt", "routers.txt" }));
 
+        jPasswordField1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+
         jButton1.setBackground(new java.awt.Color(255, 233, 162));
+        jButton1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton1.setText("Device Groups");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +245,7 @@ public class AutoPlink extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 233, 162));
+        jButton2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton2.setText("Output Folder");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,14 +253,18 @@ public class AutoPlink extends javax.swing.JFrame {
             }
         });
 
+        jCheckBoxVerbose.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxVerbose.setText("Verbose");
         jCheckBoxVerbose.setToolTipText("");
 
+        jCheckBoxVisible.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxVisible.setText("Visible");
 
+        jCheckBoxKiosk.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxKiosk.setText("Kiosk");
 
         jButtonGo.setBackground(new java.awt.Color(200, 255, 153));
+        jButtonGo.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonGo.setText("Go");
         jButtonGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,12 +272,16 @@ public class AutoPlink extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Command Group:");
 
+        jComboBoxCommandGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxCommandGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         buttonGroupCommandType.add(jRadioButtonCommandTypeSingle);
+        jRadioButtonCommandTypeSingle.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonCommandTypeSingle.setSelected(true);
         jRadioButtonCommandTypeSingle.setText("Single");
         jRadioButtonCommandTypeSingle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButtonCommandTypeSingle.addActionListener(new java.awt.event.ActionListener() {
@@ -267,27 +290,33 @@ public class AutoPlink extends javax.swing.JFrame {
             }
         });
 
-        buttonGroupCommandType.add(jRadioButtonGroupCommand);
-        jRadioButtonGroupCommand.setText("Group");
-        jRadioButtonGroupCommand.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupCommandType.add(jRadioButtonCommandTypeGroup);
+        jRadioButtonCommandTypeGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonCommandTypeGroup.setText("Group");
+        jRadioButtonCommandTypeGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonGroupCommandActionPerformed(evt);
+                jRadioButtonCommandTypeGroupActionPerformed(evt);
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Command Type:");
 
+        jButtonEditDeviceGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditDeviceGroup.setText("Edit");
+        jButtonEditDeviceGroup.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonEditDeviceGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEditDeviceGroupActionPerformed(evt);
             }
         });
 
+        jButtonEditCommandGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditCommandGroup.setText("Edit");
 
         buttonGroupDeviceType.add(jRadioButtonCommandTypeSingle1);
+        jRadioButtonCommandTypeSingle1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonCommandTypeSingle1.setSelected(true);
         jRadioButtonCommandTypeSingle1.setText("Single");
         jRadioButtonCommandTypeSingle1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -298,6 +327,7 @@ public class AutoPlink extends javax.swing.JFrame {
         });
 
         buttonGroupDeviceType.add(jRadioButtonGroupCommand1);
+        jRadioButtonGroupCommand1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonGroupCommand1.setText("Group");
         jRadioButtonGroupCommand1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,11 +335,24 @@ public class AutoPlink extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Device Type:");
 
+        jTextFieldCommandToRun1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Device:");
+
+        jButtonEditDeviceGroup1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonEditDeviceGroup1.setText("Test");
+        jButtonEditDeviceGroup1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonEditDeviceGroup1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditDeviceGroup1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -344,11 +387,14 @@ public class AutoPlink extends javax.swing.JFrame {
                                 .addComponent(jRadioButtonGroupCommand1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jTextFieldUsername)
                             .addComponent(jPasswordField1)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBoxDeviceGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonEditDeviceGroup))
-                            .addComponent(jTextFieldCommandToRun1)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextFieldCommandToRun1)
+                                    .addComponent(jComboBoxDeviceGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(8, 8, 8)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonEditDeviceGroup, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                    .addComponent(jButtonEditDeviceGroup1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -361,7 +407,7 @@ public class AutoPlink extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jRadioButtonCommandTypeSingle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonGroupCommand, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jRadioButtonCommandTypeGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextFieldCommandToRun)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jComboBoxCommandGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -392,16 +438,17 @@ public class AutoPlink extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextFieldCommandToRun1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCommandToRun1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEditDeviceGroup1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBoxDeviceGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEditDeviceGroup))
+                    .addComponent(jButtonEditDeviceGroup)
+                    .addComponent(jComboBoxDeviceGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonCommandTypeSingle)
-                    .addComponent(jRadioButtonGroupCommand)
+                    .addComponent(jRadioButtonCommandTypeGroup)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -425,17 +472,18 @@ public class AutoPlink extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel6.getAccessibleContext().setAccessibleDescription("");
 
         jTextPaneLog.setBackground(new java.awt.Color(0, 0, 0));
-        jTextPaneLog.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        jTextPaneLog.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
         jTextPaneLog.setForeground(new java.awt.Color(255, 255, 255));
         jTextPaneLog.setText("Ready...");
         jScrollPaneLog.setViewportView(jTextPaneLog);
 
+        jTextFieldCommandFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldCommandFilter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldCommandFilterKeyReleased(evt);
@@ -560,12 +608,7 @@ public class AutoPlink extends javax.swing.JFrame {
                 strPlinkVerbose = "";   
                 strLogVerbose = "";
             }
-            //- Window status
-//            if (jCheckBoxVerbose.isSelected() == true) {
-//                String strPlinkVerbose = "1";
-//            } else {
-//                String strPlinkVerbose = "0";
-//            }
+            //- Kiosk to show 
             if (jCheckBoxKiosk.isSelected() == true) {
                 strPlinkKiosk = " /k ";
             } else {
@@ -686,11 +729,11 @@ public class AutoPlink extends javax.swing.JFrame {
         jTextFieldCommandToRun.setEnabled(true);
     }//GEN-LAST:event_jRadioButtonCommandTypeSingleActionPerformed
 
-    private void jRadioButtonGroupCommandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonGroupCommandActionPerformed
+    private void jRadioButtonCommandTypeGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCommandTypeGroupActionPerformed
         jComboBoxCommandGroup.setEnabled(true);
         jButtonEditCommandGroup.setEnabled(true);
         jTextFieldCommandToRun.setEnabled(false);
-    }//GEN-LAST:event_jRadioButtonGroupCommandActionPerformed
+    }//GEN-LAST:event_jRadioButtonCommandTypeGroupActionPerformed
 
     private void jRadioButtonCommandTypeSingle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCommandTypeSingle1ActionPerformed
         // TODO add your handling code here:
@@ -699,6 +742,10 @@ public class AutoPlink extends javax.swing.JFrame {
     private void jRadioButtonGroupCommand1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonGroupCommand1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonGroupCommand1ActionPerformed
+
+    private void jButtonEditDeviceGroup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditDeviceGroup1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditDeviceGroup1ActionPerformed
     
     private ArrayList getCommandList() throws FileNotFoundException, IOException, URISyntaxException
     {
@@ -889,6 +936,7 @@ public class AutoPlink extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonEditCommandGroup;
     private javax.swing.JButton jButtonEditDeviceGroup;
+    private javax.swing.JButton jButtonEditDeviceGroup1;
     private javax.swing.JButton jButtonGo;
     private javax.swing.JCheckBox jCheckBoxKiosk;
     private javax.swing.JCheckBox jCheckBoxVerbose;
@@ -907,9 +955,9 @@ public class AutoPlink extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JRadioButton jRadioButtonCommandTypeGroup;
     private javax.swing.JRadioButton jRadioButtonCommandTypeSingle;
     private javax.swing.JRadioButton jRadioButtonCommandTypeSingle1;
-    private javax.swing.JRadioButton jRadioButtonGroupCommand;
     private javax.swing.JRadioButton jRadioButtonGroupCommand1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneLog;
