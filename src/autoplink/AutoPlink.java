@@ -152,6 +152,7 @@ public class AutoPlink extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroupCommandType = new javax.swing.ButtonGroup();
+        buttonGroupDeviceType = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -177,6 +178,11 @@ public class AutoPlink extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButtonEditDeviceGroup = new javax.swing.JButton();
         jButtonEditCommandGroup = new javax.swing.JButton();
+        jRadioButtonCommandTypeSingle1 = new javax.swing.JRadioButton();
+        jRadioButtonGroupCommand1 = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextFieldCommandToRun1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jScrollPaneLog = new javax.swing.JScrollPane();
         jTextPaneLog = new javax.swing.JTextPane();
         jTextFieldCommandFilter = new javax.swing.JTextField();
@@ -253,7 +259,6 @@ public class AutoPlink extends javax.swing.JFrame {
         jComboBoxCommandGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         buttonGroupCommandType.add(jRadioButtonCommandTypeSingle);
-        jRadioButtonCommandTypeSingle.setSelected(true);
         jRadioButtonCommandTypeSingle.setText("Single");
         jRadioButtonCommandTypeSingle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButtonCommandTypeSingle.addActionListener(new java.awt.event.ActionListener() {
@@ -282,6 +287,30 @@ public class AutoPlink extends javax.swing.JFrame {
 
         jButtonEditCommandGroup.setText("Edit");
 
+        buttonGroupDeviceType.add(jRadioButtonCommandTypeSingle1);
+        jRadioButtonCommandTypeSingle1.setSelected(true);
+        jRadioButtonCommandTypeSingle1.setText("Single");
+        jRadioButtonCommandTypeSingle1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jRadioButtonCommandTypeSingle1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonCommandTypeSingle1ActionPerformed(evt);
+            }
+        });
+
+        buttonGroupDeviceType.add(jRadioButtonGroupCommand1);
+        jRadioButtonGroupCommand1.setText("Group");
+        jRadioButtonGroupCommand1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonGroupCommand1ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Device Type:");
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("Device:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -302,27 +331,38 @@ public class AutoPlink extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jRadioButtonCommandTypeSingle1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButtonGroupCommand1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextFieldUsername)
+                            .addComponent(jPasswordField1)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jComboBoxDeviceGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonEditDeviceGroup))
+                            .addComponent(jTextFieldCommandToRun1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel6)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jRadioButtonCommandTypeSingle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButtonGroupCommand, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextFieldUsername)
                             .addComponent(jTextFieldCommandToRun)
-                            .addComponent(jPasswordField1)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBoxDeviceGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonEditDeviceGroup))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jComboBoxCommandGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -344,6 +384,16 @@ public class AutoPlink extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButtonCommandTypeSingle1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButtonGroupCommand1)
+                        .addComponent(jLabel7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextFieldCommandToRun1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jComboBoxDeviceGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,7 +412,7 @@ public class AutoPlink extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jComboBoxCommandGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditCommandGroup))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jCheckBoxVerbose)
@@ -375,7 +425,7 @@ public class AutoPlink extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel6.getAccessibleContext().setAccessibleDescription("");
@@ -417,9 +467,9 @@ public class AutoPlink extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPaneLog, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)))
+                        .addComponent(jScrollPaneLog, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -641,6 +691,14 @@ public class AutoPlink extends javax.swing.JFrame {
         jButtonEditCommandGroup.setEnabled(true);
         jTextFieldCommandToRun.setEnabled(false);
     }//GEN-LAST:event_jRadioButtonGroupCommandActionPerformed
+
+    private void jRadioButtonCommandTypeSingle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCommandTypeSingle1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonCommandTypeSingle1ActionPerformed
+
+    private void jRadioButtonGroupCommand1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonGroupCommand1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonGroupCommand1ActionPerformed
     
     private ArrayList getCommandList() throws FileNotFoundException, IOException, URISyntaxException
     {
@@ -660,39 +718,58 @@ public class AutoPlink extends javax.swing.JFrame {
             archivo.createNewFile();
             List<String> lines = Arrays.asList(
 " ~~~~~~~~ Info Pull ~~~~~~~~~",
-"ARP Table,show ip arp",
-"CDP Neighbors,show cdp neighbor",
-"Hostnames Only,exit",
-"Inventory,show inventory",
-"System Image,show version | i System image file",
-"Inventory,show inventory",
-"Model Numbers,show version | i Model number|WS-C45",
-"Modules,show modules",
-"Serial Numbers,show version | i System ser|FOX|SMG|FXS",
-"SNMP Users,show snmp user | i User name",
-"Usernames,show running-config | i username",
-"VoIP Serial Numbers,show lldp neighbor detail | i Serial number",
-"Uptime,show version | i uptime",
-"",
+"(Access Lists) ,show access-lists",
+"(CDP Neighbors) ,show cdp neighbor",
+"(CDP Neighbors Detail) ,show cdp neighbor detail",
+"(Config) ,show running-config",
+"(CPU Sorted) ,show processes cpu sorted 5min | exclude 0.00",
+"(CPU History) ,show processes cpu history",
+"(Hostnames Only) ,exit",
+"(Inventory) ,show inventory",
+"(IP ARP Table) ,show ip arp",
+"(IP Route Table) ,show ip route",
+"(System Image) ,show version | i System image file",
+"(Inventory) ,show inventory",
+"(LLDP Neighbors) ,show lldp neighbor",
+"(LLDP Neighbors Detail) ,show lldp neighbor detail",
+"(Inventory) ,show inventory",
+"(Model Numbers) ,show version | i Model number|WS-C45",
+"(Modules) ,show modules",
+"(NTP Association) ,show ntp association",
+"(NTP Status) ,show ntp status",
+"(Serial Numbers) ,show version | i System ser|FOX|SMG|FXS",
+"(STP Brief) ,show spanning-tree brief",
+"(STP Root) ,show spanning-tree root",
+"(STP Summary) ,show spanning-tree summary",
+"(SNMP User names) ,show snmp user | i User name",
+"(Switch) ,show switch",
+"(Uptime) ,show version | i uptime",
+"(Usernames) ,show running-config | i username",
+"(Version) ,show version",
+"(VoIP Serial Numbers) ,show lldp neighbor detail | i Serial number",
+"(VTP Status) ,show vtp status",
+" ",
 " ~~~~~ Compliance Check ~~~~~~",
-"ACL Allow Bypass,show running-config | i ACL-ALLOW in",
-"Password Recovery,show running-config | i password-recovery",
-"Authentication Open,show running-config | i authentication open|access-group ACL-ALLOW|Giga|Fast",
-"Dot1x Enabled,show dot1x | i Sysauthcontrol",
-"Err-Disabled Ports,show int status err-disabled",
-"Failing Auth Sessions,show auth session | i Unauth|Running|Failed",
-"Gateway of Last Resort,show ip route | i Gateway",
-"VLAN ACL,show running-config int vlan 777 | i access",
-"Stale User Sessions,show user",
-"Provisioned Switches,show switch | i 0000",
-"STP Roots,show spanning-tree | i This bridge is the root",
-"TACACS Servers,show tacacs  | i Server",
-"TFTP Server,show running-config | i tftp-server",
-"Line ACL,show running-config | i line con|line vty|access-class",
-"",
+"(ACL Allow Bypass) ,show running-config | i ACL-ALLOW in",
+"(CRC Errors) ,show interfaces | include (Ethernet|CRC) | exclude 0 CRC",
+"(Dot1x Auth Open) ,show running-config | i authentication open|access-group ACL-ALLOW|Giga|Fast",
+"(Dot1x Enabled) ,show dot1x | i Sysauthcontrol",
+"(Err-Disabled Ports) ,show int status err-disabled",
+"(Failing Auth Sessions) ,show auth session | i Unauth|Running|Failed",
+"(Gateway of Last Resort) ,show ip route | i Gateway",
+"(Half-Duplex Ethernet) ,show interfaces | include (Ethernet|Half-duplex)",
+"(Line ACL) ,show running-config | i line con|line vty|access-class",
+"(Password Recovery) ,show running-config | i password-recovery",
+"(Provisioned Switches) ,show switch | i 0000",
+"(Stale User Sessions) ,show user",
+"(STP Roots) ,show spanning-tree | i This bridge is the root",
+"(TACACS Servers) ,show tacacs  | i Server",
+"(TFTP Server) ,show running-config | i tftp-server",
+"(VLAN ACL) ,show running-config int vlan 777 | i access",
+" ",
 " ~~~~~~~~ Other ~~~~~~~~~",
-"Cancel Reload,reload cancel",
-"Write Memory,write memory");
+"(Cancel Reload) ,reload cancel",
+"(Write Memory) ,write memory");
             
             Path file = Paths.get(strCommandList);
             Files.write(file, lines, Charset.forName("UTF-8"));
@@ -807,6 +884,7 @@ public class AutoPlink extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupCommandType;
+    private javax.swing.ButtonGroup buttonGroupDeviceType;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonEditCommandGroup;
@@ -823,16 +901,21 @@ public class AutoPlink extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JRadioButton jRadioButtonCommandTypeSingle;
+    private javax.swing.JRadioButton jRadioButtonCommandTypeSingle1;
     private javax.swing.JRadioButton jRadioButtonGroupCommand;
+    private javax.swing.JRadioButton jRadioButtonGroupCommand1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneLog;
     private javax.swing.JTextField jTextFieldCommandFilter;
     private javax.swing.JTextField jTextFieldCommandToRun;
+    private javax.swing.JTextField jTextFieldCommandToRun1;
     private javax.swing.JTextField jTextFieldUsername;
     private javax.swing.JTextPane jTextPaneLog;
     // End of variables declaration//GEN-END:variables
