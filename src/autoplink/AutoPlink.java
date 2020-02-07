@@ -168,8 +168,6 @@ public class AutoPlink extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jCheckBoxVerbose = new javax.swing.JCheckBox();
-        jCheckBoxVisible = new javax.swing.JCheckBox();
-        jCheckBoxKiosk = new javax.swing.JCheckBox();
         jButtonGo = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxCommandGroup = new javax.swing.JComboBox<>();
@@ -178,12 +176,13 @@ public class AutoPlink extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButtonEditDeviceGroup = new javax.swing.JButton();
         jButtonEditCommandGroup = new javax.swing.JButton();
-        jRadioButtonCommandTypeSingle1 = new javax.swing.JRadioButton();
-        jRadioButtonGroupCommand1 = new javax.swing.JRadioButton();
+        jRadioButtonDeviceTypeSingle = new javax.swing.JRadioButton();
+        jRadioButtonDeviceTypeGroup = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldCommandToRun1 = new javax.swing.JTextField();
+        jTextFieldDeviceSingle = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jButtonEditDeviceGroup1 = new javax.swing.JButton();
+        jCheckBoxAcceptKeys = new javax.swing.JCheckBox();
         jScrollPaneLog = new javax.swing.JScrollPane();
         jTextPaneLog = new javax.swing.JTextPane();
         jTextFieldCommandFilter = new javax.swing.JTextField();
@@ -211,6 +210,7 @@ public class AutoPlink extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jTextFieldCommandToRun.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldCommandToRun.setText("show version | i ptime");
 
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -225,6 +225,7 @@ public class AutoPlink extends javax.swing.JFrame {
         jLabel3.setText("Password:");
 
         jTextFieldUsername.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldUsername.setText("admin");
 
         jLabel4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -234,6 +235,7 @@ public class AutoPlink extends javax.swing.JFrame {
         jComboBoxDeviceGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "switches.txt", "routers.txt" }));
 
         jPasswordField1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jPasswordField1.setText("cisco");
 
         jButton1.setBackground(new java.awt.Color(255, 233, 162));
         jButton1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -256,12 +258,6 @@ public class AutoPlink extends javax.swing.JFrame {
         jCheckBoxVerbose.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxVerbose.setText("Verbose");
         jCheckBoxVerbose.setToolTipText("");
-
-        jCheckBoxVisible.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jCheckBoxVisible.setText("Visible");
-
-        jCheckBoxKiosk.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jCheckBoxKiosk.setText("Kiosk");
 
         jButtonGo.setBackground(new java.awt.Color(200, 255, 153));
         jButtonGo.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -315,23 +311,23 @@ public class AutoPlink extends javax.swing.JFrame {
         jButtonEditCommandGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditCommandGroup.setText("Edit");
 
-        buttonGroupDeviceType.add(jRadioButtonCommandTypeSingle1);
-        jRadioButtonCommandTypeSingle1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonCommandTypeSingle1.setSelected(true);
-        jRadioButtonCommandTypeSingle1.setText("Single");
-        jRadioButtonCommandTypeSingle1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jRadioButtonCommandTypeSingle1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupDeviceType.add(jRadioButtonDeviceTypeSingle);
+        jRadioButtonDeviceTypeSingle.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonDeviceTypeSingle.setSelected(true);
+        jRadioButtonDeviceTypeSingle.setText("Single");
+        jRadioButtonDeviceTypeSingle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jRadioButtonDeviceTypeSingle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonCommandTypeSingle1ActionPerformed(evt);
+                jRadioButtonDeviceTypeSingleActionPerformed(evt);
             }
         });
 
-        buttonGroupDeviceType.add(jRadioButtonGroupCommand1);
-        jRadioButtonGroupCommand1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonGroupCommand1.setText("Group");
-        jRadioButtonGroupCommand1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupDeviceType.add(jRadioButtonDeviceTypeGroup);
+        jRadioButtonDeviceTypeGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonDeviceTypeGroup.setText("Group");
+        jRadioButtonDeviceTypeGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonGroupCommand1ActionPerformed(evt);
+                jRadioButtonDeviceTypeGroupActionPerformed(evt);
             }
         });
 
@@ -339,7 +335,8 @@ public class AutoPlink extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Device Type:");
 
-        jTextFieldCommandToRun1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldDeviceSingle.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldDeviceSingle.setText("10.2.1.51");
 
         jLabel8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -354,6 +351,11 @@ public class AutoPlink extends javax.swing.JFrame {
             }
         });
 
+        jCheckBoxAcceptKeys.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jCheckBoxAcceptKeys.setSelected(true);
+        jCheckBoxAcceptKeys.setText("Accept Keys");
+        jCheckBoxAcceptKeys.setToolTipText("");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -363,10 +365,9 @@ public class AutoPlink extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxKiosk)
-                            .addComponent(jCheckBoxVisible)
-                            .addComponent(jCheckBoxVerbose))
-                        .addGap(18, 18, 18)
+                            .addComponent(jCheckBoxVerbose)
+                            .addComponent(jCheckBoxAcceptKeys))
+                        .addGap(30, 30, 30)
                         .addComponent(jButtonGo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,14 +383,14 @@ public class AutoPlink extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jRadioButtonCommandTypeSingle1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRadioButtonDeviceTypeSingle, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonGroupCommand1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jRadioButtonDeviceTypeGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jTextFieldUsername)
                             .addComponent(jPasswordField1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextFieldCommandToRun1)
+                                    .addComponent(jTextFieldDeviceSingle)
                                     .addComponent(jComboBoxDeviceGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(8, 8, 8)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -431,20 +432,21 @@ public class AutoPlink extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButtonCommandTypeSingle1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonDeviceTypeSingle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButtonGroupCommand1)
+                        .addComponent(jRadioButtonDeviceTypeGroup)
                         .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextFieldCommandToRun1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEditDeviceGroup1))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonEditDeviceGroup1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jTextFieldDeviceSingle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jButtonEditDeviceGroup)
-                    .addComponent(jComboBoxDeviceGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonEditDeviceGroup, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBoxDeviceGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonCommandTypeSingle)
@@ -464,9 +466,7 @@ public class AutoPlink extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jCheckBoxVerbose)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBoxVisible)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBoxKiosk))
+                        .addComponent(jCheckBoxAcceptKeys))
                     .addComponent(jButtonGo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -515,9 +515,9 @@ public class AutoPlink extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPaneLog, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPaneLog, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -576,14 +576,9 @@ public class AutoPlink extends javax.swing.JFrame {
         String strUsername = jTextFieldUsername.getText();
         String strSecret = new String(jPasswordField1.getPassword());
         String strPlinkexe = pathWorkingDirectory + "\\plink.exe";
-        String strDeviceGroup = strPathDeviceGroupFolder + "\\" + (String)jComboBoxDeviceGroup.getSelectedItem();
         String strLogFile = strPathLoggingFolder + "\\AutoPlink-" + dateTime + " " + (String)jComboBoxDeviceGroup.getSelectedItem() + "";  
         String strSingleCommand = jTextFieldCommandToRun.getText();
         File filePlinkexe = new File(strPlinkexe);
-        File fileDeviceGroup = new File (strDeviceGroup);
-        addToLogWindow("Device group:" + strDeviceGroup);
-        addToLogWindow("Device group:" + strDeviceGroup);
-        addToLogWindow("Device group:" + strDeviceGroup);
         //Check if Plink is found
         if (filePlinkexe.exists()) {
             addToLogWindow("Found plink.exe, continuing...");
@@ -596,25 +591,26 @@ public class AutoPlink extends javax.swing.JFrame {
         System.out.println("Log file: " + strLogFile);
 
 
-        if (jRadioButtonCommandTypeSingle.isSelected() == true) {
-            String strPlinkVerbose;
-            String strPlinkKiosk;
-            String strLogVerbose;
-            //- Verbose for extra output
-            if (jCheckBoxVerbose.isSelected() == true) {
-                strPlinkVerbose = " -v ";
-                strLogVerbose = " 2>&1 ";
-            } else {
-                strPlinkVerbose = "";   
-                strLogVerbose = "";
-            }
-            //- Kiosk to show 
-            if (jCheckBoxKiosk.isSelected() == true) {
-                strPlinkKiosk = " /k ";
-            } else {
-                strPlinkKiosk = " /c ";                
-            }
-            
+        String strPlinkVerbose;
+        String strLogVerbose;
+        //- Verbose for extra output
+        if (jCheckBoxVerbose.isSelected() == true) {
+            strPlinkVerbose = " -v ";
+            strLogVerbose = " 2>&1 ";
+        } else {
+            strPlinkVerbose = "";   
+            strLogVerbose = "";
+        }           
+
+
+
+        //- Begin Plink Automation
+
+        //- Read Device Group file
+        if (jRadioButtonDeviceTypeGroup.isSelected() == true) {   
+            String strDeviceGroup = strPathDeviceGroupFolder + "\\" + (String)jComboBoxDeviceGroup.getSelectedItem();
+            File fileDeviceGroup = new File (strDeviceGroup);
+                    
             //- Count Lines in file  
             int lines = 0;
             try {
@@ -625,10 +621,6 @@ public class AutoPlink extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            //- Begin Plink Automation
-            
-            //- Read Device Group file
             try (BufferedReader br = new BufferedReader(new FileReader(fileDeviceGroup))) {
                 String device;
                 //- Count the lines
@@ -639,50 +631,78 @@ public class AutoPlink extends javax.swing.JFrame {
                     line++;
                     jTextPaneLog.setText("Processing " + line + " of " + lines);
                     addToLogWindow("Target: " + device);
-                    try {
+                    try {                        
                         //- command prompt to run plink.exe
-                        String strCMD = "cmd.exe " + strPlinkKiosk + " ";
-                        
-                        //- Accept Key
-                        addToLogWindow("Accepting Key...") ;
-                        createSingleCommandFile("exit");
-                        String strEXEC = "echo y | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " " + device + " -m \"" + strPathCommandSingleFile + "\"";
-                        System.out.println(strEXEC);
-                        Process p1 = Runtime.getRuntime().exec(strCMD + strEXEC);
-                        p1.waitFor();
-                        
+                        String strCMD = "cmd.exe /c ";
+                        String strEXEC;
+                        if (jCheckBoxAcceptKeys.isSelected() == true) {
+                            //- Accept Key
+                            addToLogWindow("Accepting Key...") ;
+                            createSingleCommandFile("exit");
+                            strEXEC = strCMD + "echo y | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " " + device + " -m \"" + strPathCommandSingleFile + "\"";
+                            System.out.println(strEXEC);
+                            Process p1 = Runtime.getRuntime().exec(strEXEC);
+                            p1.waitFor();
+                        }
+
                         //- Write Hostname to file
                         addToLogWindow("Getting Hostname...");                        
                         createSingleCommandFile("show run | i hostname");
-                        strEXEC = strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
-                        System.out.println(strCMD + strEXEC);  
-                        Process p2 = Runtime.getRuntime().exec(strCMD + strEXEC);
+                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+                        System.out.println(strEXEC);  
+                        Process p2 = Runtime.getRuntime().exec(strEXEC);
                         p2.waitFor();
+
+                        //- OUTPUTS TO LOG WINDOW - MIGHT USE LATER    
+                        //- Write Hostname to file
+    //                        addToLogWindow("Getting Hostname...");                        
+    //                        createSingleCommandFile("show run | i hostname");
+    //                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+    //                        System.out.println(strEXEC);  
+    //                        Process p2 = Runtime.getRuntime().exec(strEXEC);
+    //                        //p2.waitFor();
+    //                        InputStream stderr = p2.getErrorStream();
+    //                        InputStreamReader isr = new InputStreamReader(stderr);
+    //                        BufferedReader brisr = new BufferedReader(isr);
+    //                        String linebr = null;
+    //                        System.out.println("<ERROR>");
+    //                        while ( (linebr = brisr.readLine()) != null) {
+    //                            System.out.println(linebr);            
+    //                            addToLogWindow(linebr);
+    //                        }
+    //                        System.out.println("</ERROR>");
+    //                        int exitVal = p2.waitFor();
+    //                        System.out.println("Process exitValue: " + exitVal);
+
+
+
 
                         //- Write IP to file
                         addToLogWindow("Writing IP...");                        
-                        strEXEC = " echo " + device + " >> \"" + strLogFile + "\" " + strLogVerbose;
-                        System.out.println(strCMD + strEXEC);  
-                        Process p3 = Runtime.getRuntime().exec(strCMD + strEXEC);
+                        strEXEC = strCMD + " echo " + device + " >> \"" + strLogFile + "\" " + strLogVerbose;
+                        System.out.println(strEXEC);  
+                        Process p3 = Runtime.getRuntime().exec(strEXEC);
                         p3.waitFor();
-                        
-                        
+
+
                         if (jRadioButtonCommandTypeSingle.isSelected() == true) {                        
                             //- Run Command
                             addToLogWindow("Running Command:" + strSingleCommand);                        
                             createSingleCommandFile(strSingleCommand);
-                            strEXEC = strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
-                            System.out.println(strCMD + strEXEC);  
-                            Process p4 = Runtime.getRuntime().exec(strCMD + strEXEC);
+                            strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+                            System.out.println(strEXEC);  
+                            Process p4 = Runtime.getRuntime().exec(strEXEC);
                             p4.waitFor(); 
                         }
-                        
+
                         //- Insert some space
-                        strEXEC = " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
-                        Process p5 = Runtime.getRuntime().exec(strCMD + strEXEC);
+                        strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
+                        Process p5 = Runtime.getRuntime().exec(strEXEC);
                         p5.waitFor();
-                        Process p6 = Runtime.getRuntime().exec(strCMD + strEXEC);
+                        Process p6 = Runtime.getRuntime().exec(strEXEC);
                         p6.waitFor(); 
+
+
                     }                    
                     catch (IOException e) {
                         System.out.println("Something is wrong!");
@@ -690,19 +710,116 @@ public class AutoPlink extends javax.swing.JFrame {
                     } catch (InterruptedException ex) {
                         Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
                     }                          
-            
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //- Open log file
-            addToLogWindow("Opening log File...");                                     
-            openFileUsingDesktop(strLogFile);
-            addToLogWindow("");                        
-            addToLogWindow("We're all done!");           
         }
+        if (jRadioButtonDeviceTypeSingle.isSelected() == true) {                        
+//            try (BufferedReader br = new BufferedReader(new FileReader(fileDeviceGroup))) {
+                String device = jTextFieldDeviceSingle.getText();
+                //- Count the lines
+//                int line = 0;
+
+                //- Start processing
+//                while ((device = br.readLine()) != null) {
+//                    line++;
+//                    jTextPaneLog.setText("Processing " + line + " of " + lines);
+                    jTextPaneLog.setText("Target: " + device);
+                    try {                        
+                        //- command prompt to run plink.exe
+                        String strCMD = "cmd.exe /c ";
+                        String strEXEC;
+                        if (jCheckBoxAcceptKeys.isSelected() == true) {
+                            //- Accept Key
+                            addToLogWindow("Accepting Key...") ;
+                            createSingleCommandFile("exit");
+                            strEXEC = strCMD + "echo y | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " " + device + " -m \"" + strPathCommandSingleFile + "\"";
+                            System.out.println(strEXEC);
+                            Process p1 = Runtime.getRuntime().exec(strEXEC);
+                            p1.waitFor();
+                        }
+
+                        //- Write Hostname to file
+                        addToLogWindow("Getting Hostname...");                        
+                        createSingleCommandFile("show run | i hostname");
+                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+                        System.out.println(strEXEC);  
+                        Process p2 = Runtime.getRuntime().exec(strEXEC);
+                        p2.waitFor();
+
+                        //- OUTPUTS TO LOG WINDOW - MIGHT USE LATER    
+                        //- Write Hostname to file
+    //                        addToLogWindow("Getting Hostname...");                        
+    //                        createSingleCommandFile("show run | i hostname");
+    //                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+    //                        System.out.println(strEXEC);  
+    //                        Process p2 = Runtime.getRuntime().exec(strEXEC);
+    //                        //p2.waitFor();
+    //                        InputStream stderr = p2.getErrorStream();
+    //                        InputStreamReader isr = new InputStreamReader(stderr);
+    //                        BufferedReader brisr = new BufferedReader(isr);
+    //                        String linebr = null;
+    //                        System.out.println("<ERROR>");
+    //                        while ( (linebr = brisr.readLine()) != null) {
+    //                            System.out.println(linebr);            
+    //                            addToLogWindow(linebr);
+    //                        }
+    //                        System.out.println("</ERROR>");
+    //                        int exitVal = p2.waitFor();
+    //                        System.out.println("Process exitValue: " + exitVal);
+
+
+
+
+                        //- Write IP to file
+                        addToLogWindow("Writing IP...");                        
+                        strEXEC = strCMD + " echo " + device + " >> \"" + strLogFile + "\" " + strLogVerbose;
+                        System.out.println(strEXEC);  
+                        Process p3 = Runtime.getRuntime().exec(strEXEC);
+                        p3.waitFor();
+
+
+                        if (jRadioButtonCommandTypeSingle.isSelected() == true) {                        
+                            //- Run Command
+                            addToLogWindow("Running Command:" + strSingleCommand);                        
+                            createSingleCommandFile(strSingleCommand);
+                            strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+                            System.out.println(strEXEC);  
+                            Process p4 = Runtime.getRuntime().exec(strEXEC);
+                            p4.waitFor(); 
+                        }
+
+                        //- Insert some space
+                        strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
+                        Process p5 = Runtime.getRuntime().exec(strEXEC);
+                        p5.waitFor();
+                        Process p6 = Runtime.getRuntime().exec(strEXEC);
+                        p6.waitFor(); 
+
+
+                    }                    
+                    catch (IOException e) {
+                        System.out.println("Something is wrong!");
+                        JOptionPane.showMessageDialog(null, "Something is wrong!");
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+                    }                          
+//                }
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (IOException ex) {
+//                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        }
+        //- Open log file
+        addToLogWindow("Opening log File...");                                     
+        openFileUsingDesktop(strLogFile);
+        addToLogWindow("");                        
+        addToLogWindow("We're all done!");           
+        
     }//GEN-LAST:event_jButtonGoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -735,13 +852,13 @@ public class AutoPlink extends javax.swing.JFrame {
         jTextFieldCommandToRun.setEnabled(false);
     }//GEN-LAST:event_jRadioButtonCommandTypeGroupActionPerformed
 
-    private void jRadioButtonCommandTypeSingle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCommandTypeSingle1ActionPerformed
+    private void jRadioButtonDeviceTypeSingleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDeviceTypeSingleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonCommandTypeSingle1ActionPerformed
+    }//GEN-LAST:event_jRadioButtonDeviceTypeSingleActionPerformed
 
-    private void jRadioButtonGroupCommand1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonGroupCommand1ActionPerformed
+    private void jRadioButtonDeviceTypeGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDeviceTypeGroupActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonGroupCommand1ActionPerformed
+    }//GEN-LAST:event_jRadioButtonDeviceTypeGroupActionPerformed
 
     private void jButtonEditDeviceGroup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditDeviceGroup1ActionPerformed
         // TODO add your handling code here:
@@ -938,9 +1055,8 @@ public class AutoPlink extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditDeviceGroup;
     private javax.swing.JButton jButtonEditDeviceGroup1;
     private javax.swing.JButton jButtonGo;
-    private javax.swing.JCheckBox jCheckBoxKiosk;
+    private javax.swing.JCheckBox jCheckBoxAcceptKeys;
     private javax.swing.JCheckBox jCheckBoxVerbose;
-    private javax.swing.JCheckBox jCheckBoxVisible;
     private javax.swing.JComboBox<String> jComboBoxCommandGroup;
     private javax.swing.JComboBox<String> jComboBoxDeviceGroup;
     private javax.swing.JLabel jLabel1;
@@ -957,13 +1073,13 @@ public class AutoPlink extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JRadioButton jRadioButtonCommandTypeGroup;
     private javax.swing.JRadioButton jRadioButtonCommandTypeSingle;
-    private javax.swing.JRadioButton jRadioButtonCommandTypeSingle1;
-    private javax.swing.JRadioButton jRadioButtonGroupCommand1;
+    private javax.swing.JRadioButton jRadioButtonDeviceTypeGroup;
+    private javax.swing.JRadioButton jRadioButtonDeviceTypeSingle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneLog;
     private javax.swing.JTextField jTextFieldCommandFilter;
     private javax.swing.JTextField jTextFieldCommandToRun;
-    private javax.swing.JTextField jTextFieldCommandToRun1;
+    private javax.swing.JTextField jTextFieldDeviceSingle;
     private javax.swing.JTextField jTextFieldUsername;
     private javax.swing.JTextPane jTextPaneLog;
     // End of variables declaration//GEN-END:variables

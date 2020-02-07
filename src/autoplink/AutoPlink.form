@@ -69,7 +69,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jTextFieldCommandFilter" min="-2" max="-2" attributes="0"/>
@@ -77,9 +77,9 @@
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jPanel2" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPaneLog" min="-2" pref="184" max="-2" attributes="0"/>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPaneLog" pref="184" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -126,11 +126,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jCheckBoxKiosk" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBoxVisible" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBoxVerbose" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBoxVerbose" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBoxAcceptKeys" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jButtonGo" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -149,15 +148,15 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jRadioButtonCommandTypeSingle1" min="-2" pref="68" max="-2" attributes="0"/>
+                                      <Component id="jRadioButtonDeviceTypeSingle" min="-2" pref="68" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jRadioButtonGroupCommand1" max="32767" attributes="0"/>
+                                      <Component id="jRadioButtonDeviceTypeGroup" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jTextFieldUsername" max="32767" attributes="0"/>
                                   <Component id="jPasswordField1" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jTextFieldCommandToRun1" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldDeviceSingle" max="32767" attributes="0"/>
                                           <Component id="jComboBoxDeviceGroup" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -212,23 +211,25 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jRadioButtonCommandTypeSingle1" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jRadioButtonDeviceTypeSingle" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jRadioButtonGroupCommand1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButtonDeviceTypeGroup" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldCommandToRun1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonEditDeviceGroup1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldDeviceSingle" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonEditDeviceGroup" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBoxDeviceGroup" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -252,9 +253,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jCheckBoxVerbose" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jCheckBoxVisible" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jCheckBoxKiosk" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBoxAcceptKeys" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jButtonGo" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
@@ -274,6 +273,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Unicode MS" size="11" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="show version | i ptime"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -308,6 +308,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Unicode MS" size="11" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="admin"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
@@ -340,6 +341,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Unicode MS" size="11" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="cisco"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
@@ -377,22 +379,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Verbose"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBoxVisible">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Unicode MS" size="11" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Visible"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBoxKiosk">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Unicode MS" size="11" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Kiosk"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonGo">
@@ -500,7 +486,7 @@
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButtonCommandTypeSingle1">
+            <Component class="javax.swing.JRadioButton" name="jRadioButtonDeviceTypeSingle">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupDeviceType"/>
@@ -513,10 +499,10 @@
                 <Property name="horizontalAlignment" type="int" value="2"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonCommandTypeSingle1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonDeviceTypeSingleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioButtonGroupCommand1">
+            <Component class="javax.swing.JRadioButton" name="jRadioButtonDeviceTypeGroup">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupDeviceType"/>
@@ -527,7 +513,7 @@
                 <Property name="text" type="java.lang.String" value="Group"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonGroupCommand1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonDeviceTypeGroupActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -539,11 +525,12 @@
                 <Property name="text" type="java.lang.String" value="Device Type:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldCommandToRun1">
+            <Component class="javax.swing.JTextField" name="jTextFieldDeviceSingle">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Unicode MS" size="11" style="0"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="10.2.1.51"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -568,6 +555,16 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditDeviceGroup1ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBoxAcceptKeys">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial Unicode MS" size="11" style="0"/>
+                </Property>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Accept Keys"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
