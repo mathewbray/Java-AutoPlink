@@ -60,13 +60,19 @@ public class AutoPlink extends javax.swing.JFrame {
     String strPathLaunchPadFolder = System.getenv("SYSTEMDRIVE") + "\\LaunchPad";
     String strPathAutoPlinkFolder = strPathLaunchPadFolder + "\\Java Apps\\AutoPlink";
     String strPathDeviceGroupFolder = strPathAutoPlinkFolder + "\\DeviceGroups";
+    String strPathDeviceSingleFolder = strPathAutoPlinkFolder + "\\DeviceSingle";
+    String strPathDeviceSingleFile = strPathDeviceSingleFolder + "\\SingleDevice.txt";    
     String strPathCommandGroupFolder = strPathAutoPlinkFolder + "\\CommandGroups";
     String strPathCommandSingleFolder = strPathAutoPlinkFolder + "\\CommandSingle";
     String strPathCommandSingleFile = strPathCommandSingleFolder + "\\SingleCommand.txt";    
     String strCommandListDefault = strPathAutoPlinkFolder + "\\CommandList.csv";
-    //--- Get date and time
+    //- Get date and time
     SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
     String dateTime = simpleDateFormat.format(new Date());    
+    
+    //- Plink
+    String strPlinkexe = pathWorkingDirectory + "\\plink.exe";
+
     
     public AutoPlink() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException, FileNotFoundException, URISyntaxException {
         initComponents();
@@ -103,6 +109,7 @@ public class AutoPlink extends javax.swing.JFrame {
         new File(strPathAutoPlinkFolder).mkdirs();        
         new File(strPathDeviceGroupFolder).mkdirs();
         new File(strPathCommandGroupFolder).mkdirs();
+        new File(strPathDeviceSingleFolder).mkdirs();
     }
     
     private void setGUILookAndFeel() {
@@ -183,6 +190,7 @@ public class AutoPlink extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButtonEditDeviceGroup1 = new javax.swing.JButton();
         jCheckBoxAcceptKeys = new javax.swing.JCheckBox();
+        jCheckBoxSaveConfig = new javax.swing.JCheckBox();
         jScrollPaneLog = new javax.swing.JScrollPane();
         jTextPaneLog = new javax.swing.JTextPane();
         jTextFieldCommandFilter = new javax.swing.JTextField();
@@ -233,6 +241,7 @@ public class AutoPlink extends javax.swing.JFrame {
 
         jComboBoxDeviceGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxDeviceGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "switches.txt", "routers.txt" }));
+        jComboBoxDeviceGroup.setEnabled(false);
 
         jPasswordField1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPasswordField1.setText("cisco");
@@ -356,6 +365,10 @@ public class AutoPlink extends javax.swing.JFrame {
         jCheckBoxAcceptKeys.setText("Accept Keys");
         jCheckBoxAcceptKeys.setToolTipText("");
 
+        jCheckBoxSaveConfig.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jCheckBoxSaveConfig.setText("Save Config");
+        jCheckBoxSaveConfig.setToolTipText("runs \"copy running-config startup-config\" ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -365,14 +378,13 @@ public class AutoPlink extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxVerbose)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jCheckBoxVerbose)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jCheckBoxSaveConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jCheckBoxAcceptKeys))
-                        .addGap(30, 30, 30)
-                        .addComponent(jButtonGo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonGo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -413,12 +425,13 @@ public class AutoPlink extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jComboBoxCommandGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonEditCommandGroup)))))
+                                .addComponent(jButtonEditCommandGroup))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -464,15 +477,17 @@ public class AutoPlink extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jCheckBoxVerbose)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBoxVerbose)
+                            .addComponent(jCheckBoxSaveConfig))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBoxAcceptKeys))
-                    .addComponent(jButtonGo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonGo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel6.getAccessibleContext().setAccessibleDescription("");
@@ -517,7 +532,7 @@ public class AutoPlink extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPaneLog, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)))
+                        .addComponent(jScrollPaneLog, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -572,12 +587,15 @@ public class AutoPlink extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Command is missing!", "Enter Command", 1);
             return;
         }            
-        //- Variables 
+        //- Get Username and Pass
         String strUsername = jTextFieldUsername.getText();
         String strSecret = new String(jPasswordField1.getPassword());
-        String strPlinkexe = pathWorkingDirectory + "\\plink.exe";
+        //- Set Log File
+        simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+        dateTime = simpleDateFormat.format(new Date());
         String strLogFile = strPathLoggingFolder + "\\AutoPlink-" + dateTime + " " + (String)jComboBoxDeviceGroup.getSelectedItem() + "";  
         String strSingleCommand = jTextFieldCommandToRun.getText();
+        String strCommand;
         File filePlinkexe = new File(strPlinkexe);
         //Check if Plink is found
         if (filePlinkexe.exists()) {
@@ -586,8 +604,7 @@ public class AutoPlink extends javax.swing.JFrame {
             addToLogWindow("Plink.exe NOT found, stopping...");
             return;
         }
-        simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
-        dateTime = simpleDateFormat.format(new Date());
+
         System.out.println("Log file: " + strLogFile);
 
 
@@ -607,213 +624,248 @@ public class AutoPlink extends javax.swing.JFrame {
         //- Begin Plink Automation
 
         //- Read Device Group file
-        if (jRadioButtonDeviceTypeGroup.isSelected() == true) {   
-            String strDeviceGroup = strPathDeviceGroupFolder + "\\" + (String)jComboBoxDeviceGroup.getSelectedItem();
-            File fileDeviceGroup = new File (strDeviceGroup);
-                    
-            //- Count Lines in file  
-            int lines = 0;
-            try {
-                BufferedReader brCount = new BufferedReader(new FileReader(fileDeviceGroup));
-                while (brCount.readLine() != null) lines++;                
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try (BufferedReader br = new BufferedReader(new FileReader(fileDeviceGroup))) {
-                String device;
-                //- Count the lines
-                int line = 0;
-
-                //- Start processing
-                while ((device = br.readLine()) != null) {
-                    line++;
-                    jTextPaneLog.setText("Processing " + line + " of " + lines);
-                    addToLogWindow("Target: " + device);
-                    try {                        
-                        //- command prompt to run plink.exe
-                        String strCMD = "cmd.exe /c ";
-                        String strEXEC;
-                        if (jCheckBoxAcceptKeys.isSelected() == true) {
-                            //- Accept Key
-                            addToLogWindow("Accepting Key...") ;
-                            createSingleCommandFile("exit");
-                            strEXEC = strCMD + "echo y | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " " + device + " -m \"" + strPathCommandSingleFile + "\"";
-                            System.out.println(strEXEC);
-                            Process p1 = Runtime.getRuntime().exec(strEXEC);
-                            p1.waitFor();
-                        }
-
-                        //- Write Hostname to file
-                        addToLogWindow("Getting Hostname...");                        
-                        createSingleCommandFile("show run | i hostname");
-                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
-                        System.out.println(strEXEC);  
-                        Process p2 = Runtime.getRuntime().exec(strEXEC);
-                        p2.waitFor();
-
-                        //- OUTPUTS TO LOG WINDOW - MIGHT USE LATER    
-                        //- Write Hostname to file
-    //                        addToLogWindow("Getting Hostname...");                        
-    //                        createSingleCommandFile("show run | i hostname");
-    //                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
-    //                        System.out.println(strEXEC);  
-    //                        Process p2 = Runtime.getRuntime().exec(strEXEC);
-    //                        //p2.waitFor();
-    //                        InputStream stderr = p2.getErrorStream();
-    //                        InputStreamReader isr = new InputStreamReader(stderr);
-    //                        BufferedReader brisr = new BufferedReader(isr);
-    //                        String linebr = null;
-    //                        System.out.println("<ERROR>");
-    //                        while ( (linebr = brisr.readLine()) != null) {
-    //                            System.out.println(linebr);            
-    //                            addToLogWindow(linebr);
-    //                        }
-    //                        System.out.println("</ERROR>");
-    //                        int exitVal = p2.waitFor();
-    //                        System.out.println("Process exitValue: " + exitVal);
-
-
-
-
-                        //- Write IP to file
-                        addToLogWindow("Writing IP...");                        
-                        strEXEC = strCMD + " echo " + device + " >> \"" + strLogFile + "\" " + strLogVerbose;
-                        System.out.println(strEXEC);  
-                        Process p3 = Runtime.getRuntime().exec(strEXEC);
-                        p3.waitFor();
-
-
-                        if (jRadioButtonCommandTypeSingle.isSelected() == true) {                        
-                            //- Run Command
-                            addToLogWindow("Running Command:" + strSingleCommand);                        
-                            createSingleCommandFile(strSingleCommand);
-                            strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
-                            System.out.println(strEXEC);  
-                            Process p4 = Runtime.getRuntime().exec(strEXEC);
-                            p4.waitFor(); 
-                        }
-
-                        //- Insert some space
-                        strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
-                        Process p5 = Runtime.getRuntime().exec(strEXEC);
-                        p5.waitFor();
-                        Process p6 = Runtime.getRuntime().exec(strEXEC);
-                        p6.waitFor(); 
-
-
-                    }                    
-                    catch (IOException e) {
-                        System.out.println("Something is wrong!");
-                        JOptionPane.showMessageDialog(null, "Something is wrong!");
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
-                    }                          
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        String strDevicesPath = strPathDeviceGroupFolder + "\\" + (String)jComboBoxDeviceGroup.getSelectedItem();
         if (jRadioButtonDeviceTypeSingle.isSelected() == true) {                        
-//            try (BufferedReader br = new BufferedReader(new FileReader(fileDeviceGroup))) {
-                String device = jTextFieldDeviceSingle.getText();
-                //- Count the lines
-//                int line = 0;
+            try {
+                createSingleDeviceFile(jTextFieldDeviceSingle.getText());
+                strDevicesPath = strPathDeviceSingleFile;
+            } catch (IOException ex) {
+                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        File fileDevices = new File (strDevicesPath);
 
-                //- Start processing
-//                while ((device = br.readLine()) != null) {
-//                    line++;
-//                    jTextPaneLog.setText("Processing " + line + " of " + lines);
-                    jTextPaneLog.setText("Target: " + device);
-                    try {                        
-                        //- command prompt to run plink.exe
-                        String strCMD = "cmd.exe /c ";
-                        String strEXEC;
-                        if (jCheckBoxAcceptKeys.isSelected() == true) {
-                            //- Accept Key
-                            addToLogWindow("Accepting Key...") ;
-                            createSingleCommandFile("exit");
-                            strEXEC = strCMD + "echo y | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " " + device + " -m \"" + strPathCommandSingleFile + "\"";
-                            System.out.println(strEXEC);
-                            Process p1 = Runtime.getRuntime().exec(strEXEC);
-                            p1.waitFor();
-                        }
+        //- Count Lines in file  
+        int lines = 0;
+        try {
+            BufferedReader brCount = new BufferedReader(new FileReader(fileDevices));
+            while (brCount.readLine() != null) lines++;                
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader(fileDevices))) {
+            String device;
+            //- Count the lines
+            int line = 0;
 
-                        //- Write Hostname to file
-                        addToLogWindow("Getting Hostname...");                        
-                        createSingleCommandFile("show run | i hostname");
-                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+            //- Start processing
+            while ((device = br.readLine()) != null) {
+                line++;
+                jTextPaneLog.setText("Processing " + line + " of " + lines);
+                addToLogWindow("Target: " + device);
+                try {                        
+                    //- command prompt to run plink.exe
+                    String strCMD = "cmd.exe /c ";
+                    String strEXEC;
+                    Process process;
+                    
+                    //- Insert some space
+                    strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor();
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor(); 
+
+                    //- Start Device
+                    strEXEC = strCMD + " echo ======================================= Start " + device + " ======================================= >> \"" + strLogFile + "\" " + strLogVerbose;
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor();
+                    
+                    //- Insert some space
+                    strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor();
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor(); 
+                    
+                    //- Accept Key
+                    if (jCheckBoxAcceptKeys.isSelected() == true) {
+                        addToLogWindow("Accepting Key...") ;
+                        createSingleCommandFile("exit");
+                        strEXEC = strCMD + "echo y | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " " + device + " -m \"" + strPathCommandSingleFile + "\"";
+                        System.out.println(strEXEC);
+                        process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor();
+                    }
+
+                    //- Save Config if selected                        
+                    if (jCheckBoxSaveConfig.isSelected() == true) { 
+                        addToLogWindow("Running Command: copy running-config startup-config");                        
+                        createSingleCommandFile("copy running-config startup-config");
+                        strEXEC = strCMD + " echo Saving Config >> \"" + strLogFile + "\" " + strLogVerbose;
+                        process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor();
+                        strEXEC = strCMD + "echo. && echo. | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
                         System.out.println(strEXEC);  
-                        Process p2 = Runtime.getRuntime().exec(strEXEC);
-                        p2.waitFor();
-
-                        //- OUTPUTS TO LOG WINDOW - MIGHT USE LATER    
-                        //- Write Hostname to file
-    //                        addToLogWindow("Getting Hostname...");                        
-    //                        createSingleCommandFile("show run | i hostname");
-    //                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
-    //                        System.out.println(strEXEC);  
-    //                        Process p2 = Runtime.getRuntime().exec(strEXEC);
-    //                        //p2.waitFor();
-    //                        InputStream stderr = p2.getErrorStream();
-    //                        InputStreamReader isr = new InputStreamReader(stderr);
-    //                        BufferedReader brisr = new BufferedReader(isr);
-    //                        String linebr = null;
-    //                        System.out.println("<ERROR>");
-    //                        while ( (linebr = brisr.readLine()) != null) {
-    //                            System.out.println(linebr);            
-    //                            addToLogWindow(linebr);
-    //                        }
-    //                        System.out.println("</ERROR>");
-    //                        int exitVal = p2.waitFor();
-    //                        System.out.println("Process exitValue: " + exitVal);
-
-
-
-
-                        //- Write IP to file
-                        addToLogWindow("Writing IP...");                        
-                        strEXEC = strCMD + " echo " + device + " >> \"" + strLogFile + "\" " + strLogVerbose;
-                        System.out.println(strEXEC);  
-                        Process p3 = Runtime.getRuntime().exec(strEXEC);
-                        p3.waitFor();
-
-
-                        if (jRadioButtonCommandTypeSingle.isSelected() == true) {                        
-                            //- Run Command
-                            addToLogWindow("Running Command:" + strSingleCommand);                        
-                            createSingleCommandFile(strSingleCommand);
-                            strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
-                            System.out.println(strEXEC);  
-                            Process p4 = Runtime.getRuntime().exec(strEXEC);
-                            p4.waitFor(); 
-                        }
-
+                        process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor(); 
                         //- Insert some space
                         strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
-                        Process p5 = Runtime.getRuntime().exec(strEXEC);
-                        p5.waitFor();
-                        Process p6 = Runtime.getRuntime().exec(strEXEC);
-                        p6.waitFor(); 
-
-
+                        process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor();                    
                     }                    
-                    catch (IOException e) {
-                        System.out.println("Something is wrong!");
-                        JOptionPane.showMessageDialog(null, "Something is wrong!");
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
-                    }                          
-//                }
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (IOException ex) {
-//                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+
+                    //- Write Hostname to file
+                    addToLogWindow("Getting Hostname...");                        
+                    createSingleCommandFile("show run | i hostname");
+                    strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+                    System.out.println(strEXEC);  
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor();
+
+                    //- OUTPUTS TO LOG WINDOW - MIGHT USE LATER    
+                    //- Write Hostname to file
+//                        addToLogWindow("Getting Hostname...");                        
+//                        createSingleCommandFile("show run | i hostname");
+//                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+//                        System.out.println(strEXEC);  
+//                        Process p2 = Runtime.getRuntime().exec(strEXEC);
+//                        //p2.waitFor();
+//                        InputStream stderr = p2.getErrorStream();
+//                        InputStreamReader isr = new InputStreamReader(stderr);
+//                        BufferedReader brisr = new BufferedReader(isr);
+//                        String linebr = null;
+//                        System.out.println("<ERROR>");
+//                        while ( (linebr = brisr.readLine()) != null) {
+//                            System.out.println(linebr);            
+//                            addToLogWindow(linebr);
+//                        }
+//                        System.out.println("</ERROR>");
+//                        int exitVal = p2.waitFor();
+//                        System.out.println("Process exitValue: " + exitVal);
+
+
+
+
+                    //- Write IP to file
+                    addToLogWindow("Writing IP...");                        
+                    strEXEC = strCMD + " echo " + device + " >> \"" + strLogFile + "\" " + strLogVerbose;
+                    System.out.println(strEXEC);  
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor();
+
+
+                    if (jRadioButtonCommandTypeSingle.isSelected() == true) {                        
+                        //- Run Command
+                        addToLogWindow("Running Command:" + strSingleCommand);                        
+                        createSingleCommandFile(strSingleCommand);
+                        strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+                        System.out.println(strEXEC);  
+                        process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor(); 
+                    }
+
+                    //- Insert some space
+                    strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor();
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor(); 
+
+                    //- End Device
+                    strEXEC = strCMD + " echo ======================================= End " + device + " ======================================= >> \"" + strLogFile + "\" " + strLogVerbose;
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor();
+                    
+                    //- Insert some space
+                    strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor();
+                    process = Runtime.getRuntime().exec(strEXEC);
+                    process.waitFor(); 
+                }                    
+                catch (IOException e) {
+                    System.out.println("Something is wrong!");
+                    JOptionPane.showMessageDialog(null, "Something is wrong!");
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+                }                          
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+//        if (jRadioButtonDeviceTypeSingle.isSelected() == true) {                        
+//            String device = jTextFieldDeviceSingle.getText();
+//            jTextPaneLog.setText("Target: " + device);
+//            try {                        
+//                //- command prompt to run plink.exe
+//                String strCMD = "cmd.exe /c ";
+//                String strEXEC;
+//                Process process;
+//
+//                //- Accept Key
+//                if (jCheckBoxAcceptKeys.isSelected() == true) {
+//                    addToLogWindow("Accepting Key...") ;
+//                    createSingleCommandFile("exit");
+//                    strEXEC = strCMD + "echo y | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " " + device + " -m \"" + strPathCommandSingleFile + "\"";
+//                    System.out.println(strEXEC);
+//                    process = Runtime.getRuntime().exec(strEXEC);
+//                    process.waitFor();
+//                }
+//
+//                //- Save Config if selected                        
+//                if (jCheckBoxSaveConfig.isSelected() == true) { 
+//                    addToLogWindow("Running Command: copy running-config startup-config");                        
+//                    createSingleCommandFile("copy running-config startup-config");
+//                    strEXEC = strCMD + " echo Saving Config >> \"" + strLogFile + "\" " + strLogVerbose;
+//                    process = Runtime.getRuntime().exec(strEXEC);
+//                    process.waitFor();
+//                    strEXEC = strCMD + "echo. && echo. | " + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+//                    System.out.println(strEXEC);  
+//                    process = Runtime.getRuntime().exec(strEXEC);
+//                    process.waitFor(); 
+//                    //- Insert some space
+//                    strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
+//                    process = Runtime.getRuntime().exec(strEXEC);
+//                    process.waitFor();                    
+//                } 
+//
+//                //- Write Hostname to file
+//                addToLogWindow("Getting Hostname...");                        
+//                createSingleCommandFile("show run | i hostname");
+//                strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+//                System.out.println(strEXEC);  
+//                process = Runtime.getRuntime().exec(strEXEC);
+//                process.waitFor();
+//
+//                //- Write IP to file
+//                addToLogWindow("Writing IP...");                        
+//                strEXEC = strCMD + " echo " + device + " >> \"" + strLogFile + "\" " + strLogVerbose;
+//                System.out.println(strEXEC);  
+//                process = Runtime.getRuntime().exec(strEXEC);
+//                process.waitFor();
+//
+//                //- Run single command if selected
+//                if (jRadioButtonCommandTypeSingle.isSelected() == true) {                        
+//                    addToLogWindow("Running Command:" + strSingleCommand);                        
+//                    createSingleCommandFile(strSingleCommand);
+//                    strEXEC = strCMD + strPlinkexe + " " + strPlinkVerbose + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\" " + strLogVerbose;
+//                    System.out.println(strEXEC);  
+//                    process = Runtime.getRuntime().exec(strEXEC);
+//                    process.waitFor(); 
+//                }
+//
+//                //- Insert some space
+//                strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" " + strLogVerbose;
+//                Process p5 = Runtime.getRuntime().exec(strEXEC);
+//                p5.waitFor();
+//                process = Runtime.getRuntime().exec(strEXEC);
+//                process.waitFor(); 
+//                process.waitFor(); 
+//            }                    
+//            catch (IOException e) {
+//                System.out.println("Something is wrong!");
+//                JOptionPane.showMessageDialog(null, "Something is wrong!");
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+//            }                          
+//        }
         //- Open log file
         addToLogWindow("Opening log File...");                                     
         openFileUsingDesktop(strLogFile);
@@ -853,15 +905,105 @@ public class AutoPlink extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonCommandTypeGroupActionPerformed
 
     private void jRadioButtonDeviceTypeSingleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDeviceTypeSingleActionPerformed
-        // TODO add your handling code here:
+        jTextFieldDeviceSingle.setEnabled(Boolean.TRUE);
+        jComboBoxDeviceGroup.setEnabled(Boolean.FALSE);        
     }//GEN-LAST:event_jRadioButtonDeviceTypeSingleActionPerformed
 
     private void jRadioButtonDeviceTypeGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDeviceTypeGroupActionPerformed
-        // TODO add your handling code here:
+        jTextFieldDeviceSingle.setEnabled(Boolean.FALSE);
+        jComboBoxDeviceGroup.setEnabled(Boolean.TRUE);  
     }//GEN-LAST:event_jRadioButtonDeviceTypeGroupActionPerformed
 
     private void jButtonEditDeviceGroup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditDeviceGroup1ActionPerformed
-        // TODO add your handling code here:
+        //- Validate fields
+        if (jTextFieldUsername.getText() == null || jTextFieldUsername.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Username is missing!", "Enter Username", 1);
+            return;
+        }
+        if (jPasswordField1.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(null, "Password is missing!", "Enter Password", 1);
+            return;            
+        }
+        if (jTextFieldCommandToRun.getText() == null || jTextFieldCommandToRun.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Command is missing!", "Enter Command", 1);
+            return;
+        }        
+        if (jTextFieldCommandToRun.getText() == null || jTextFieldCommandToRun.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Command is missing!", "Enter Command", 1);
+            return;
+        }            
+        //- Get Username and Pass 
+        String strUsername = jTextFieldUsername.getText();
+        String strSecret = new String(jPasswordField1.getPassword());
+        //- Set Log File
+        simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+        dateTime = simpleDateFormat.format(new Date());
+        String strLogFile = strPathLoggingFolder + "\\AutoPlink-" + dateTime + " " + (String)jComboBoxDeviceGroup.getSelectedItem() + "";          
+        
+                
+                
+                String device = jTextFieldDeviceSingle.getText();
+
+                    jTextPaneLog.setText("Target: " + device);
+                    try {                        
+                        //- command prompt to run plink.exe
+                        String strCMD = "cmd.exe /c ";
+                        String strEXEC;
+                        if (jCheckBoxAcceptKeys.isSelected() == true) {
+                            //- Accept Key
+                            addToLogWindow("Accepting Key...") ;
+                            createSingleCommandFile("copy running-config startup-config");
+                            strEXEC = strCMD + "echo. && echo. | " + strPlinkexe + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " " + device + " -m \"" + strPathCommandSingleFile + "\"";
+                            System.out.println(strEXEC);
+                            Process p1 = Runtime.getRuntime().exec(strEXEC);
+                            p1.waitFor();
+                        }
+                        
+                        //- Add message in file
+                        strEXEC = strCMD + " echo You should see your running-config below. >> \"" + strLogFile + "\"  ";
+                        Process process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor();
+                        //- Insert some space
+                        strEXEC = strCMD + " echo. >> \"" + strLogFile + "\" 2>&1 ";
+                        process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor();
+                        process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor(); 
+                        
+                        
+                        //- Write Hostname to file
+                        addToLogWindow("Getting Running-Config...");                        
+                        createSingleCommandFile("show running-config");
+                        strEXEC = strCMD + strPlinkexe + " -ssh -2 -l " + strUsername + " -pw " + strSecret + " -batch " + device + " -m \"" + strPathCommandSingleFile + "\" >> \"" + strLogFile + "\"  ";
+                        System.out.println(strEXEC);  
+                        process = Runtime.getRuntime().exec(strEXEC);
+                        process.waitFor();
+
+                        //- Write IP to file
+                        addToLogWindow("Writing IP...");                        
+                        strEXEC = strCMD + " echo " + device + " >> \"" + strLogFile + "\"  ";
+                        System.out.println(strEXEC);  
+                        Process p3 = Runtime.getRuntime().exec(strEXEC);
+                        p3.waitFor();
+                    }                    
+                    catch (IOException e) {
+                        System.out.println("Something is wrong!");
+                        JOptionPane.showMessageDialog(null, "Something is wrong!");
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+                    }                          
+//                }
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (IOException ex) {
+//                Logger.getLogger(AutoPlink.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        
+        //- Open log file
+        addToLogWindow("Opening log File...");                                     
+        openFileUsingDesktop(strLogFile);
+        addToLogWindow("");                        
+        addToLogWindow("We're all done!");     
     }//GEN-LAST:event_jButtonEditDeviceGroup1ActionPerformed
     
     private ArrayList getCommandList() throws FileNotFoundException, IOException, URISyntaxException
@@ -881,7 +1023,7 @@ public class AutoPlink extends javax.swing.JFrame {
         if(!archivo.exists()) {  
             archivo.createNewFile();
             List<String> lines = Arrays.asList(
-" ~~~~~~~~ Info Pull ~~~~~~~~~",
+" ~~~~~~~ Info Collection ~~~~~~~~",
 "(Access Lists) ,show access-lists",
 "(CDP Neighbors) ,show cdp neighbor",
 "(CDP Neighbors Detail) ,show cdp neighbor detail",
@@ -1004,6 +1146,21 @@ public class AutoPlink extends javax.swing.JFrame {
         //} 
     }
     
+    private void createSingleDeviceFile(String strDevice) throws IOException {
+        //--- Check for local user properties file
+        File fileSingleCommand = new File(strPathDeviceSingleFile);
+        //if (!fileSingleCommand.exists()) {
+            fileSingleCommand.createNewFile();
+            //- Multiline for future reference (will need to separate string by comma)
+//            List<String> lines = Arrays.asList(strCommand);
+//                        List<String> lines = Arrays.asList(
+//"conf t",                                
+//"interface g0/1");
+            Path file = Paths.get(fileSingleCommand.getPath());
+            Files.write(file, strDevice.getBytes(StandardCharsets.UTF_8));
+        //} 
+    }
+    
     public void openFileUsingDesktop(String strFullFilePath) {
         System.out.println("openFileUsingDesktop: " + strFullFilePath);
 
@@ -1056,6 +1213,7 @@ public class AutoPlink extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditDeviceGroup1;
     private javax.swing.JButton jButtonGo;
     private javax.swing.JCheckBox jCheckBoxAcceptKeys;
+    private javax.swing.JCheckBox jCheckBoxSaveConfig;
     private javax.swing.JCheckBox jCheckBoxVerbose;
     private javax.swing.JComboBox<String> jComboBoxCommandGroup;
     private javax.swing.JComboBox<String> jComboBoxDeviceGroup;
