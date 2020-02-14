@@ -280,9 +280,11 @@ public class AutoPlink extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Command Group:");
+        jLabel5.setEnabled(false);
 
         jComboBoxCommandGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxCommandGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxCommandGroup.setEnabled(false);
 
         buttonGroupCommandType.add(jRadioButtonCommandTypeSingle);
         jRadioButtonCommandTypeSingle.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -298,6 +300,7 @@ public class AutoPlink extends javax.swing.JFrame {
         buttonGroupCommandType.add(jRadioButtonCommandTypeGroup);
         jRadioButtonCommandTypeGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonCommandTypeGroup.setText("Group");
+        jRadioButtonCommandTypeGroup.setEnabled(false);
         jRadioButtonCommandTypeGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonCommandTypeGroupActionPerformed(evt);
@@ -319,6 +322,7 @@ public class AutoPlink extends javax.swing.JFrame {
 
         jButtonEditCommandGroup.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditCommandGroup.setText("Edit");
+        jButtonEditCommandGroup.setEnabled(false);
 
         buttonGroupDeviceType.add(jRadioButtonDeviceTypeSingle);
         jRadioButtonDeviceTypeSingle.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -1039,6 +1043,7 @@ public class AutoPlink extends javax.swing.JFrame {
 "(LLDP Neighbors) ,show lldp neighbor",
 "(LLDP Neighbors Detail) ,show lldp neighbor detail",
 "(Inventory) ,show inventory",
+"(MAC Address Table) ,show mac address-table",
 "(Model Numbers) ,show version | i Model number|WS-C45",
 "(Modules) ,show modules",
 "(NTP Association) ,show ntp association",
